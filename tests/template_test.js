@@ -149,4 +149,14 @@ describe('params', function () {
         t.append(obj);
         expect(t.fetch()).toEqual(result);
     });
+    it('Tobb tobbparameteres valtozo', function () {
+        var str = '<p>{$content:substr(6, 5)}</p><p>{$content:substr(6, 11)}</p>',
+            obj = {
+                'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+            },
+            result = '<p>ipsum</p><p>ipsum dolor</p>',
+            t = new JSTemplate(str);
+        t.append(obj);
+        expect(t.fetch()).toEqual(result);
+    });
 });
