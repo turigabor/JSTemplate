@@ -16,10 +16,10 @@ JSTemplate.prototype = {
     },
     fetch: function () {
         var me = this, re = this.variableRegexp;
-        return this.html.replace(re, function (match, name, filter) {
+        return this.html.replace(re, function (match, name, filter, param) {
             var value = me.getValueByName(name);
             if (filter && JSTemplate.filters[filter]) {
-                value = JSTemplate.filters[filter].call(me, value);
+                value = JSTemplate.filters[filter].call(me, value, param);
             }
             return value;
         });

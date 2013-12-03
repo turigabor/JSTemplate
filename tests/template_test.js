@@ -126,3 +126,17 @@ describe('filtered', function () {
         expect(t.fetch()).toEqual(result);
     });
 });
+
+describe('params', function () {
+    it('Parameteres valtozo', function () {
+        var str = '<div class="{$cls:lower}">{$content:truncate(20)}</div>',
+            obj = {
+                'cls': 'Content',
+                'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+            },
+            result = '<div class="content">Lorem ipsum dolor...</div>',
+            t = new JSTemplate(str);
+        t.append(obj);
+        expect(t.fetch()).toEqual(result);
+    });
+});
