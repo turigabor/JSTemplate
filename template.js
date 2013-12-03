@@ -17,7 +17,11 @@ JSTemplate.prototype = {
     fetch: function () {
         var me = this, re = this.variableRegexp;
         return this.html.replace(re, function (match, name) {
-			return me.values[name];
+			return me.getValueByName(name);
         });
+    },
+    /** @private */
+    getValueByName: function (name) {
+        return this.values[name] || '';
     }
 };

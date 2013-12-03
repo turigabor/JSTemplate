@@ -65,4 +65,14 @@ describe('simple', function () {
         t.append(obj);
         expect(t.fetch()).toEqual(result);
     });
+    it('Undefined', function () {
+        var str = 'Szia {$nev}!',
+            obj = {
+                'name': 'vilag'
+            },
+            result = 'Szia !',
+            t = new JSTemplate(str);
+        t.append(obj);
+        expect(t.fetch()).toEqual(result);
+    });
 });
