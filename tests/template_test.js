@@ -54,4 +54,15 @@ describe('simple', function () {
         t.append(obj);
         expect(t.fetch()).toEqual(result);
     });
+    it('Egyszeru valtozok 3.', function () {
+        var str = '{$foo}{$foo}{$foo}{$boo}',
+            obj = {
+                'foo': 'f',
+                'boo': 'b'
+            },
+            result = 'fffb',
+            t = new JSTemplate(str);
+        t.append(obj);
+        expect(t.fetch()).toEqual(result);
+    });
 });
