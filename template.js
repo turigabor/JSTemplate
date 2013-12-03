@@ -29,5 +29,8 @@ JSTemplate.prototype = {
 JSTemplate.filters = {
     upper: function (str) {
         return String(str).toUpperCase();
+    },
+    lower: function (str) {
+        return String(str).toLowerCase();
     }
 };

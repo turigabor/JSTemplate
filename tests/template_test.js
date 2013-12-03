@@ -101,4 +101,7 @@ describe('filters', function () {
     it('upper', function () {
         expect(fn.upper(str)).toEqual('SZIA VILAG!');
     });
+    it('lower', function () {
+        expect(fn.lower(str)).toEqual('szia vilag!');
+    });
 });
