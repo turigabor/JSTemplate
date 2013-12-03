@@ -17,7 +17,7 @@ JSTemplate.prototype = {
     },
     fetch: function () {
         var me = this, re = this.variableRegexp;
-        return this.html.replace(re, function (match, name, filter, param) {
+        return this.doForeach().replace(re, function (match, name, filter, param) {
             var value = me.getValueByName(name), params;
             if (filter && JSTemplate.filters[filter]) {
                 params = me.createFilterParams(value, param);
@@ -25,6 +25,29 @@ JSTemplate.prototype = {
             }
             return value;
         });
+    },
+    /* @private */
+    doForeach: function () {
+        var me = this, re = this.foreachRegexp;
+        return this.html.replace(re, function (match, name, content) {
+            var list = me.getListValueByName(name), i, subTemplate, result;
+            if (!list.length || !content) {
+                return '';
+            }
+            result = [];
+            subTemplate = new JSTemplate(content);
+            for (i = 0; i < list.length; ++i) {
+                result.push(subTemplate.append(list[i]).fetch());
+            }
+            return result.join('');
+        });
+    },
+    /** @private */
+    getListValueByName: function (name) {
+        if (!this.values[name]) {
+            return [];
+        }
+        return [].concat(this.values[name]);
     },
     /** @private */
     getValueByName: function (name) {

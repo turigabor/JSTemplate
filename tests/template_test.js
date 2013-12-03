@@ -177,3 +177,23 @@ describe('regexp2', function () {
         expect(match[2]).toEqual('<li>{$content}</li>');
     });
 });
+
+describe('foreach', function () {
+    it('Valtozo listaval 1.', function () {
+        var str = '<h1>{$header}</h1><ul><foreach name="$list"><li>{$content}</li></foreach></ul>',
+            obj = {
+                'header': 'Lista',
+                'list': [{
+                    'content': '1.'
+                }, {
+                    'content': '2.'
+                }, {
+                    'content': '3.'
+                }]
+            },
+            result = '<h1>Lista</h1><ul><li>1.</li><li>2.</li><li>3.</li></ul>',
+            t = new JSTemplate(str);
+        t.append(obj);
+        expect(t.fetch()).toEqual(result);
+    });
+});
