@@ -29,6 +29,13 @@ describe('regexp1', function () {
         expect(matches).toEqual(['{$id}', '{$class}', '{$content}']);
         expect(names).toEqual(['id', 'class', 'content']);
     });
+    it('Szuros vatlozo', function () {
+        var str = 'Szia {$name:upper}!',
+            match = re.exec(str);
+        expect(match[0]).toEqual('{$name:upper}');
+        expect(match[1]).toEqual('name');
+        expect(match[2]).toEqual('upper');
+    });
 });
 
 describe('simple', function () {
