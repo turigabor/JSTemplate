@@ -10,7 +10,14 @@ var JSTemplate = function (html) {
 };
 JSTemplate.prototype = {
     variableRegexp: /\{\$(\w+)\}/g,
+    append: function (values) {
+        this.values = values;
+        return this;
+    },
     fetch: function () {
-        return this.html;
+        var me = this, re = this.variableRegexp;
+        return this.html.replace(re, function (match, name) {
+			return me.values[name];
+        });
     }
 };

@@ -30,3 +30,16 @@ describe('regexp1', function () {
         expect(names).toEqual(['id', 'class', 'content']);
     });
 });
+
+describe('simple', function () {
+    it('Egyszeru valtozok 1.', function () {
+        var str = 'Szia {$name}!',
+            obj = {
+                'name': 'vilag'
+            },
+            result = 'Szia vilag!',
+            t = new JSTemplate(str);
+        t.append(obj);
+        expect(t.fetch()).toEqual(result);
+    });
+});
