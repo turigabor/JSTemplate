@@ -108,4 +108,8 @@ describe('filters', function () {
         expect(fn.substr(str, 5)).toEqual('vilag!');
         expect(fn.substr(str, 0, 5)).toEqual('Szia ');
     });
+    it('truncate', function () {
+        expect(fn.truncate(str, 100)).toEqual('Szia vilag!');
+        expect(fn.truncate(str, 10)).toEqual('Szia vi...');
+    });
 });

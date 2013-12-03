@@ -35,5 +35,9 @@ JSTemplate.filters = {
     },
     substr: function (str, start, length) {
         return String(str).substr(start, length);
+    },
+    truncate: function (str, length) {
+        str = String(str);
+        return str.length > length - 3 ? str.substring(0, length - 3) + '...' : str;
     }
 };
