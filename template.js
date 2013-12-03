@@ -25,3 +25,9 @@ JSTemplate.prototype = {
         return this.values[name] || '';
     }
 };
+
+JSTemplate.filters = {
+    upper: function (str) {
+        return String(str).toUpperCase();
+    }
+};

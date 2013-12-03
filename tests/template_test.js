@@ -95,3 +95,10 @@ describe('simple', function () {
         expect(t.fetch()).toEqual(result);
     });
 });
+
+describe('filters', function () {
+    var fn = JSTemplate.filters, str = 'Szia vilag!';
+    it('upper', function () {
+        expect(fn.upper(str)).toEqual('SZIA VILAG!');
+    });
+});
