@@ -160,3 +160,20 @@ describe('params', function () {
         expect(t.fetch()).toEqual(result);
     });
 });
+
+describe('regexp2', function () {
+    var template = new JSTemplate(),
+        re = template.foreachRegexp;
+
+    afterEach(function(){
+        re.lastIndex = 0;
+    });
+
+    it('Ciklus ellenorzes', function () {
+        var str = '<ul><foreach name="$list"><li>{$content}</li></foreach></ul>',
+            match = re.exec(str);
+        expect(match[0]).toEqual('<foreach name="$list"><li>{$content}</li></foreach>');
+        expect(match[1]).toEqual('list');
+        expect(match[2]).toEqual('<li>{$content}</li>');
+    });
+});

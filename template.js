@@ -10,6 +10,7 @@ var JSTemplate = function (html) {
 };
 JSTemplate.prototype = {
     variableRegexp: /\{\$(\w+)(?:\:(\w+)(?:\((.*?)\))?)?\}/g,
+    foreachRegexp: /<foreach name="\$(\w+)">(.*)<\/foreach>/g,
     append: function (values) {
         this.values = values;
         return this;
