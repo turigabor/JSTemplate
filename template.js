@@ -9,7 +9,7 @@ var JSTemplate = function (html) {
     this.html = html;
 };
 JSTemplate.prototype = {
-    variableRegexp: /\{\$(\w+)(?:\:(\w+))?\}/g,
+    variableRegexp: /\{\$(\w+)(?:\:(\w+)(?:\((.*?)\))?)?\}/g,
     append: function (values) {
         this.values = values;
         return this;

@@ -17,6 +17,10 @@ describe('regexp1', function () {
     var template = new JSTemplate(),
         re = template.variableRegexp;
 
+    afterEach(function () {
+        re.lastIndex = 0;
+    });
+
     it('Szuro nelkuli vatlozok', function () {
         var str = '<div id="{$id}" class="{$class}">{$content}</div>',
             matches = [],
@@ -35,6 +39,14 @@ describe('regexp1', function () {
         expect(match[0]).toEqual('{$name:upper}');
         expect(match[1]).toEqual('name');
         expect(match[2]).toEqual('upper');
+    });
+    it('Parameteres vatlozo', function () {
+        var str = '{$content:truncate(10)}',
+            match = re.exec(str);
+        expect(match[0]).toEqual('{$content:truncate(10)}');
+        expect(match[1]).toEqual('content');
+        expect(match[2]).toEqual('truncate');
+        expect(match[3]).toEqual('10');
     });
 });
 
