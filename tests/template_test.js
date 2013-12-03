@@ -176,6 +176,13 @@ describe('regexp2', function () {
         expect(match[1]).toEqual('list');
         expect(match[2]).toEqual('<li>{$content}</li>');
     });
+    it('Felesleges white-space-ek', function () {
+        var str = '<foreach   name="$list" ></foreach>',
+            match = re.exec(str);
+        expect(match[0]).toEqual(str);
+        expect(match[1]).toEqual('list');
+        expect(match[2]).toEqual('');
+    });
 });
 
 describe('foreach', function () {
