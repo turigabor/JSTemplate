@@ -17,9 +17,10 @@ JSTemplate.prototype = {
     fetch: function () {
         var me = this, re = this.variableRegexp;
         return this.html.replace(re, function (match, name, filter, param) {
-            var value = me.getValueByName(name);
+            var value = me.getValueByName(name), params;
             if (filter && JSTemplate.filters[filter]) {
-                value = JSTemplate.filters[filter].call(me, value, param);
+                params = me.createFilterParams(value, param);
+                value = JSTemplate.filters[filter].apply(me, params);
             }
             return value;
         });
@@ -27,6 +28,15 @@ JSTemplate.prototype = {
     /** @private */
     getValueByName: function (name) {
         return this.values[name] || '';
+    },
+    /** @private */
+    createFilterParams: function (value, param) {
+        var result = String(param || '').split(','), i;
+        for (i = 0; i < result.length; ++i) {
+            result[i] = result[i].trim();
+        }
+        result.unshift(value);
+        return result;
     }
 };
 
