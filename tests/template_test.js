@@ -42,4 +42,16 @@ describe('simple', function () {
         t.append(obj);
         expect(t.fetch()).toEqual(result);
     });
+    it('Egyszeru valtozok 2.', function () {
+        var str = '<div id="{$id}" class="{$cls}">{$content}</div>',
+            obj = {
+                'id': 'v1',
+                'cls': 'title',
+                'content': 'Hello!'
+            },
+            result = '<div id="v1" class="title">Hello!</div>',
+            t = new JSTemplate(str);
+        t.append(obj);
+        expect(t.fetch()).toEqual(result);
+    });
 });
