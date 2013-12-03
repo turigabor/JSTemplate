@@ -9,6 +9,7 @@ var JSTemplate = function (html) {
     this.html = html;
 };
 JSTemplate.prototype = {
+    variableRegexp: /\{\$(\w+)\}/g,
     fetch: function () {
         return this.html;
     }
