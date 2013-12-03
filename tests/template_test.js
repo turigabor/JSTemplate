@@ -196,4 +196,28 @@ describe('foreach', function () {
         t.append(obj);
         expect(t.fetch()).toEqual(result);
     });
+    it('Valtozo listaval 2.', function () {
+        var template = [
+                '<div class="{$cls}">',
+                    '<foreach name="$users">',
+                        '<a href="?id={$id}">{$name} ({$age})</a><br />',
+                    '</foreach>',
+                '</div>'],
+            obj = {
+                'cls': 'users',
+                'users': [{
+                    'id': 1,
+                    'name': 'John',
+                    'age': 21
+                }, {
+                    'id': 2,
+                    'name': 'Bob',
+                    'age': 30
+                }]
+            },
+            result = '<div class="users"><a href="?id=1">John (21)</a><br /><a href="?id=2">Bob (30)</a><br /></div>',
+            t = new JSTemplate(template);
+        t.append(obj);
+        expect(t.fetch()).toEqual(result);
+    });
 });
