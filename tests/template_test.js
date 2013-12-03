@@ -94,6 +94,18 @@ describe('simple', function () {
         t.append(obj);
         expect(t.fetch()).toEqual(result);
     });
+	it('Undefined + null + 0 + false', function () {
+        var str = '{$undef}-{$null}-{$zero}-{$false}',
+            obj = {
+                'null': null,
+                'zero': 0,
+                'false': 'false'
+            },
+            result = '--0-false',
+            t = new JSTemplate(str);
+        t.append(obj);
+        expect(t.fetch()).toEqual(result);
+    });
 });
 
 describe('filters', function () {

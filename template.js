@@ -51,7 +51,10 @@ JSTemplate.prototype = {
     },
     /** @private */
     getValueByName: function (name) {
-        return this.values[name] || '';
+		if (typeof this.values[name] === 'undefined' || this.values[name] === null) {
+			return '';
+		}
+        return this.values[name];
     },
     /** @private */
     createFilterParams: function (value, param) {
