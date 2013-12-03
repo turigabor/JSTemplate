@@ -16,8 +16,12 @@ JSTemplate.prototype = {
     },
     fetch: function () {
         var me = this, re = this.variableRegexp;
-        return this.html.replace(re, function (match, name) {
-			return me.getValueByName(name);
+        return this.html.replace(re, function (match, name, filter) {
+            var value = me.getValueByName(name);
+            if (filter && JSTemplate.filters[filter]) {
+                value = JSTemplate.filters[filter].call(me, value);
+            }
+            return value;
         });
     },
     /** @private */

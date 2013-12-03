@@ -113,3 +113,16 @@ describe('filters', function () {
         expect(fn.truncate(str, 10)).toEqual('Szia vi...');
     });
 });
+
+describe('filtered', function () {
+    it('Szuros valtozo', function () {
+        var str = 'Szia {$name:upper}!',
+            obj = {
+                'name': 'vilag'
+            },
+            result = 'Szia VILAG!',
+            t = new JSTemplate(str);
+        t.append(obj);
+        expect(t.fetch()).toEqual(result);
+    });
+});
