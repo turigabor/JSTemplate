@@ -104,4 +104,8 @@ describe('filters', function () {
     it('lower', function () {
         expect(fn.lower(str)).toEqual('szia vilag!');
     });
+    it('substr', function () {
+        expect(fn.substr(str, 5)).toEqual('vilag!');
+        expect(fn.substr(str, 0, 5)).toEqual('Szia ');
+    });
 });

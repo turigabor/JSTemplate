@@ -32,5 +32,8 @@ JSTemplate.filters = {
     },
     lower: function (str) {
         return String(str).toLowerCase();
+    },
+    substr: function (str, start, length) {
+        return String(str).substr(start, length);
     }
 };
